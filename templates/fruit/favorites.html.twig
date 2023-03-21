@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Favorite Fruits</h1>
+
+    {% if favoriteFruits is empty %}
+        <p>No favorite fruits found.</p>
+    {% else %}
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Calories</th>
+                <th>Fat</th>
+                <th>Protein</th>
+                <th>Carbs</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for fruit in favoriteFruits %}
+                <tr>
+                    <td>{{ fruit.name }}</td>
+                    <td>{{ fruit.calories }}</td>
+                    <td>{{ fruit.fat }}</td>
+                    <td>{{ fruit.protein }}</td>
+                    <td>{{ fruit.carbohydrates }}</td>
+                </tr>
+            {% endfor %}
+            <tr>
+                <th>Total</th>
+                <th>{{ totalNutrition['calories'] }}</th>
+                <th>{{ totalNutrition['fat'] }}</th>
+                <th>{{ totalNutrition['protein'] }}</th>
+                <th>{{ totalNutrition['carbs'] }}</th>
+            </tr>
+            </tbody>
+        </table>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>New Fruits Added</title>
+</head>
+<body>
+<p>The following fruits have been added:</p>
+<ul>
+    {% for fruit in fruits %}
+        <li>{{ fruit.name }} ({{ fruit.family }})</li>
+    {% endfor %}
+</ul>
+</body>
+</html>

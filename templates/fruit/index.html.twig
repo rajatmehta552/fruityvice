@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}All Fruits{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1 class="my-4">All Fruits</h1>
+        <form class="mb-4" method="get">
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <input type="text" name="name" class="form-control" placeholder="Search by name" value="{{ app.request.query.get('name') }}">
+                </div>
+                <div class="col-md-6">
+                    <select class="form-control mr-sm-2" name="family">#}
+                        <option value="">Search by family</option>
+                        {% for family in familyNames %}
+                            <option value="{{ family }}">{{ family }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary mt-2">Search</button>
+            <a href="{{ path('fruit_index') }}" class="btn btn-secondary mt-2">Clear</a>
+        </form>
+        {% if fruits|length > 0 %}
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Family</th>
+                    <th>Calories</th>
+                    <th>Fat</th>
+                    <th>Carbohydrates</th>
+                    <th>Protein</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for fruit in fruits %}
+                    <tr>
+                        <td>{{ fruit.name }}</td>
+                        <td>{{ fruit.family }}</td>
+                        <td>{{ fruit.calories }}</td>
+                        <td>{{ fruit.fat }}</td>
+                        <td>{{ fruit.carbohydrates }}</td>
+                        <td>{{ fruit.protein }}</td>
+                        <td class="pointer-event">
+{#                            {% if app.user and app.user.favoriteFruits.contains(fruit) %}#}
+{#                                <a href="{{ path('fruit_remove_favorite', {'id': fruit.id}) }}" class="btn btn-danger btn-sm"><i class="fas fa-heart"></i></a>#}
+{#                            {% else %}#}
+{#                                {% if app.user and app.user.favoriteFruits|length >= 10 %}#}
+                                 <i data-favorite="{{ fruit.isFavorite }}" data-id="{{ fruit.id }}" class="far fa-heart pointer-event favorite-button {% if fruit.isFavorite == true  %}favorite {% endif %}"></i>
+{#                                {% else %}#}
+{#                                    <a href="{{ path('fruit_add_favorite', {'id': fruit.id}) }}" class="btn btn-secondary btn-sm"><i class="far fa-heart"></i></a>#}
+{#                                {% endif %}#}
+{#                            {% endif %}#}
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            {{ knp_pagination_render(fruits) }}
+            <p class="text-muted">{{ fruits.getTotalItemCount }} fruits total</p>
+        {% else %}
+            <p>No fruits found</p>
+        {% endif %}
+    </div>
+{% endblock %}
+

@@ -1,0 +1,38 @@
+Fruit Test App
+
+Technologies Used
+PHP 7.4
+Symfony 5.4
+MySQL 5.7
+Bootstrap 4
+jQuery 3.6
+
+Setup
+
+Clone the repository: git clone https://github.com/your-username/fruit-app.git
+Install dependencies: composer install
+Install dependencies: npm install
+Create a MySQL database and update the DATABASE_URL parameter in the .env file with your database credentials.
+Load the schema: php bin/console doctrine:schema:update --force
+Start the server: symfony server:start
+Run: npm run build in new tab
+
+Sending Emails
+To send emails from the application, you need to add your SendGrid API Key to the .env file.
+SENDGRID_API_KEY=your-sendgrid-api-key
+
+
+Usage
+Open a web browser and navigate to http://localhost:8000
+View the list of fruits and search for specific fruits by name or family.
+Mark your favorite fruits by clicking the heart icon.
+View your list of favorite fruits and the total nutrition facts of all your favorite fruits.
+API
+The application also provides an API for updating the favorite status of a fruit. To update the favorite status of a fruit, send a PUT request to /api/fruits/{id}/favorite, where {id} is the ID of the fruit to update. The request body should be empty. The response will be a JSON object with the following properties:
+
+success: a boolean indicating whether the update was successful.
+favorite: a boolean indicating the updated favorite status of the fruit.
+Note that a user can have a maximum of 10 favorite fruits at any given time.
+
+
+
